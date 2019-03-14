@@ -15,7 +15,7 @@ class ConvertInfoDataToList:
     @staticmethod
     # 把从excel读取出的用例嵌套列表转换成行读取出来
     def convert_tender_info_to_list():
-        data = ParserExcelInfo(r'招投标流程测试用例.xlsx', 'TenderInformation', 5, 6)
+        data = ParserExcelInfo(r'E:\Project\python\swebid\swebid_ztb\招投标流程测试用例.xlsx', 'TenderInformation', 5, 6)
         # 获取所有用例数据列表
         tender_information_data_list = data.parser_excel_info()
         every_tender_information_data_list = []  # 列表，存储获取每一行用例数据
@@ -35,7 +35,7 @@ class ConvertInfoDataToList:
     # 把从excel读取出的完善信息用例嵌套列表转换成行读取出来
     @staticmethod
     def convert_project_info_to_list():
-        data = ParserExcelInfo(r'招投标流程测试用例.xlsx', 'ProjectInformation', 5, 6)
+        data = ParserExcelInfo(r'E:\Project\python\swebid\swebid_ztb\招投标流程测试用例.xlsx', 'ProjectInformation', 5, 6)
         # 获取所有用例数据列表
         project_information_info_list = data.parser_excel_info()
         every_project_info_list = []  # 列表，存储获取每一行用例数据
@@ -53,7 +53,7 @@ class ConvertInfoDataToList:
 
     @staticmethod
     def convert_confirm_info_to_list():
-        data = ParserExcelInfo(r'招投标流程测试用例', '招标选项确认', 5, 6)
+        data = ParserExcelInfo(r'E:\Project\python\swebid\swebid_ztb\招投标流程测试用例.xlsx', '招标选项确认', 5, 6)
         # 获取所有用例数据列表
         tender_confirm_info_list = data.parser_excel_info()
         every_confirm_info_list = []  # 列表，存储获取每一行用例数据

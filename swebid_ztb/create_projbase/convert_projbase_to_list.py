@@ -13,7 +13,7 @@ class ConvertProjbaseToList:
     @staticmethod
     # 把从excel读取出的用例嵌套列表转换成行读取出来
     def convert_one_info_to_list():
-        data = ParserExcelInfo('招投标流程测试用例.xlsx', '招标建档（第一步）', 5, 6)
+        data = ParserExcelInfo('E:\Project\python\swebid\swebid_ztb\招投标流程测试用例.xlsx', '招标建档（第一步）', 5, 6)
         # 获取所有用例数据列表
         one_data_list = data.parser_excel_info()
         every_one_data_list = []  # 列表，存储获取每一行用例数据

@@ -11,6 +11,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from swebid_ztb.add_bidding_registion.convert_info_data_to_list import ConvertInfoDataToList
 import logging
+from swebid_ztb.conf_login import *
 
 
 class PLACE_APPLY:
@@ -19,8 +20,11 @@ class PLACE_APPLY:
 
     def place_apply(self, c):
         self.c = c
+        self.url = conf_login()[0]  # 获取conf_login返回的url
+        self.user = conf_login()[1]  # 获取conf_login返回的user
+        self.password = conf_login()[2]  # 获取conf_login返回的password
         # 邵武
-        self.driver_login_tuple = Login.login('http://218.67.123.106/swebid/website/index.jsp#', 'zbdl', 'aa000000')
+        self.driver_login_tuple = Login.login(self.url, self.user, self.password)  # 登录
         self.ieDriver = self.driver_login_tuple[0]
         self.login_in = self.driver_login_tuple[1]
         if 'zbdl' in self.login_in:

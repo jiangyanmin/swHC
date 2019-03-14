@@ -9,8 +9,10 @@ from swebid_ztb.add_bidding_registion.convert_info_data_to_list import ConvertIn
 from time import sleep
 import logging
 from swebid_ztb.login import Login
+from swebid_ztb.conf_login import *
 
 
+# 招标登记审核、场地预约审核、招标选项确认审核
 class ReviewApplications:
     def __init__(self):
         pass
@@ -23,12 +25,15 @@ class ReviewApplications:
     #     self.ieDriver.quit()
     #     # self.ieDriver.close()
 
+    # 招标登记审核
     def bidding_register_review(self, n):
         self.n = n  # 定义第几条用例
-        # 邵武
-        # 邵武
-        self.driver_login_tuple = Login.login('http://218.67.123.106/swebid/website/index.jsp#', 'testlzx', 'aa000000')
+        self.url = conf_login()[0]  # 获取conf_login返回的url
+        self.user = conf_login()[1]  # 获取conf_login返回的user
+        self.password = conf_login()[2]  # 获取conf_login返回的password
 
+        # 邵武
+        self.driver_login_tuple = Login.login(self.url, self.user, self.password)  # 登录
         self.ieDriver = self.driver_login_tuple[0]
         self.login_in = self.driver_login_tuple[1]
         if '测试lzx' in self.login_in:
@@ -79,9 +84,15 @@ class ReviewApplications:
         else:
             raise Exception('登录失败')
 
+    # 场地预约审核
     def place_apply_review(self, n):
         self.n = n
-        self.driver_login_tuple = Login.login('http://218.67.123.106/swebid/website/index.jsp#', 'testlzx', 'aa000000')
+        self.url = conf_login()[0]  # 获取conf_login返回的url
+        self.user = conf_login()[1]  # 获取conf_login返回的user
+        self.password = conf_login()[2]  # 获取conf_login返回的password
+
+        # 邵武
+        self.driver_login_tuple = Login.login(self.url, self.user, self.password)  # 登录
         self.ieDriver = self.driver_login_tuple[0]
         self.login_in = self.driver_login_tuple[1]
         if '测试lzx' in self.login_in:
@@ -126,9 +137,15 @@ class ReviewApplications:
             logging.info('没有待审核的场地预约')
             print('没有待审核的场地预约')
 
+    # 招标选项确认审核
     def tender_confirm(self, n):
         self.n = n  # 定义第几条用例
-        self.driver_login_tuple = Login.login('http://218.67.123.106/swebid/website/index.jsp#', 'testlzx', 'aa000000')
+        self.url = conf_login()[0]  # 获取conf_login返回的url
+        self.user = conf_login()[1]  # 获取conf_login返回的user
+        self.password = conf_login()[2]  # 获取conf_login返回的password
+
+        # 邵武
+        self.driver_login_tuple = Login.login(self.url, self.user, self.password)  # 登录
         self.ieDriver = self.driver_login_tuple[0]
         self.login_in = self.driver_login_tuple[1]
         if '测试lzx' in self.login_in:
@@ -196,7 +213,8 @@ class ReviewApplications:
 if __name__ == '__main__':
     t = ReviewApplications()
     # t.setUp()
-    # t.bidding_register_review(0)
+    t.bidding_register_review(0)
     t.place_apply_review(0)
+    t.tender_confirm(0)
     # t.tender_confirm(0)
 

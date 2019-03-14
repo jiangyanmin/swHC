@@ -13,6 +13,7 @@ from swebid_ztb.login import Login
 import logging
 import os
 import datetime
+from swebid_ztb.conf_login import *
 
 
 class TenderInformation:
@@ -29,21 +30,20 @@ class TenderInformation:
     #     # self.ieDriver.close()
 
     def tender_information(self):
+        self.url = conf_login()[0]   # 获取conf_login返回的url
+        self.user = conf_login()[1]  # 获取conf_login返回的user
+        self.password = conf_login()[2]  # 获取conf_login返回的password
+
         for n in range(len(ConvertInfoDataToList.convert_tender_info_to_list())):
             # 邵武
-            self.driver_login_tuple = Login.login('http://218.67.123.106/swebid/website/index.jsp#', 'zbdl', 'aa000000')
+            self.driver_login_tuple = Login.login(self.url, self.user, self.password)  # 登录
+            # self.driver_login_tuple = Login.login('http://218.67.123.106/swebid/website/index.jsp#',
+            # 'zbdl', 'aa000000')
             # self.driver_login_tuple = Login.login('http://www.zpggzyjyzx.gov.cn/hyebid/website/index.jsp', 'zbdl',
             #                                       'aa000000')
             self.ieDriver = self.driver_login_tuple[0]
             self.login_in = self.driver_login_tuple[1]
             if 'zbdl' in self.login_in:
-                # if self.ieDriver.find_element_by_id('userid').get_attribute('value') == '':
-                #     self.ieDriver.find_element_by_id('userid').send_keys('zbdl')
-                #     self.ieDriver.find_element_by_id('password').clear()
-                #     self.ieDriver.find_element_by_id('password').send_keys('aa000000')
-                #     self.check_code = self.ieDriver.find_element_by_id('code').get_attribute('value')
-                #     self.ieDriver.find_element_by_id('verifyCode').send_keys(self.check_code)
-                #     self.ieDriver.find_element_by_xpath('//input[@value="登录"]').click()
                 #     WebDriverWait(self.ieDriver, 500, 0.5).until(
                 #         EC.presence_of_element_located((By.LINK_TEXT, '进入交易平台'))
                 #     )
@@ -185,7 +185,7 @@ class TenderInformation:
                     Select(s_attach_file).select_by_index(1)
                     self.ieDriver.find_elements_by_css_selector('span#filediv>input')[2].click()  # 浏览
                     sleep(3)
-                    os.system('上传文件.exe')
+                    os.system('上传.exe')    # E:\Project\python\swebid\
                     # self.ieDriver.switch_to.active_element  # 模态窗口
                     # WebDriverWait(self.ieDriver, 100, 0.5).until(EC.alert_is_present())
                     self.ieDriver.switch_to_alert()

@@ -12,8 +12,7 @@ from selenium.webdriver.support.select import Select
 from swebid_ztb.add_bidding_registion.convert_info_data_to_list import ConvertInfoDataToList
 import re
 import logging
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.action_chains import ActionChains
+from swebid_ztb.conf_login import *
 
 
 class CreateProjbase:
@@ -22,11 +21,13 @@ class CreateProjbase:
 
     def create_projbase(self, case):
         self.case = case  # 第几条用例
+        self.url = conf_login()[0]  # 获取conf_login返回的url
+        self.user = conf_login()[1]  # 获取conf_login返回的user
+        self.password = conf_login()[2]  # 获取conf_login返回的password
+
         for n in range(len(ConvertProjbaseToList.convert_one_info_to_list())):
             # 邵武
-            self.driver_login_tuple = Login.login('http://218.67.123.106/swebid/website/index.jsp#', 'zbdl', 'aa000000')
-            # self.driver_login_tuple = Login.login('http://www.zpggzyjyzx.gov.cn/hyebid/website/index.jsp', 'zbdl',
-            #                                       'aa000000')
+            self.driver_login_tuple = Login.login(self.url, self.user, self.password)  # 登录
             self.ieDriver = self.driver_login_tuple[0]
             self.login_in = self.driver_login_tuple[1]
             if 'zbdl' in self.login_in:
