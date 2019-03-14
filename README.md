@@ -1,1 +1,2 @@
-# swHC2
+ python + selenium 
+The flow of Bidding System
